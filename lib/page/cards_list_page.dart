@@ -1,4 +1,3 @@
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_flutter/contract/card_list_contract.dart';
@@ -55,17 +54,19 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                 Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    color: Colors.yellow,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    color: Color(int.parse(_cards[index].bgColor)),
                                   ),
-                                  width: 60,
-                                  height: 40,
+                                  width: 100,
+                                  height: 70,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         _cards[index].lastDigits
-                                      )
+                                      ),
+                                      Image.network(_cards[index].cardBrand,width: 30,
+                                        height: 20)
                                     ],
                                   ),
                                 ),
@@ -74,7 +75,8 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                   child: Column(
                                     children: [
                                       Text(
-                                          _cards[index].cardTitle
+                                          _cards[index].cardTitle,
+                                        style: TextStyle(fontWeight: FontWeight.bold)
                                     ),
                                       Text(
                                           _cards[index].statusMessage
