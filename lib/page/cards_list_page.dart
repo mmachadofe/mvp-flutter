@@ -55,7 +55,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     borderRadius: BorderRadius.circular(16.0),
-                                    color: Color(int.parse(_cards[index].bgColor)),
+                                    color: Color(int.parse(_cards[index].layoutAttrs.bgColor)),
                                   ),
                                   width: 100,
                                   height: 70,
@@ -63,7 +63,8 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        _cards[index].lastDigits
+                                        _cards[index].lastDigits,
+                                        style: TextStyle(color: Color(int.parse(_cards[index].layoutAttrs.titleColor))),
                                       ),
                                       Image.network(_cards[index].cardBrand,width: 30,
                                         height: 20)
