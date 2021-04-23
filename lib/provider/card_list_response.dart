@@ -6,9 +6,9 @@ part 'card_list_response.g.dart';
 @JsonSerializable()
 class CardListResponseVO {
 
-  final List<CardResponseVO> list;
+  final List<CardResponseVO> cards;
 
-  CardListResponseVO(this.list);
+  CardListResponseVO(this.cards);
 
   factory CardListResponseVO.fromJson(Map<String, dynamic> json) =>
       _$CardListResponseVOFromJson(json);

@@ -13,19 +13,9 @@ class CardListPresenterImpl implements CardListPresenter {
 
   @override
   void getCardList() {
-    // faça algo aqui dentro para gerar os cartões
-    final colorYellow = "#FFCC32";
-    final colorBlack = "#000000";
-    final colorGray = "#626567";
-    final colorWhite = "#FFFFFF";
-
     _api.getCardsList().then((response) {
-      _view.loadListSuccess(response.list);
+      _view.loadListSuccess(response.cards);
     });
-  }
-
-  colorHelper(String color){
-    return color.replaceAll("#", "0xff");
   }
 
   @override

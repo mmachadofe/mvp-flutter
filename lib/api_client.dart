@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 Dio _createDio() {
   final dio = Dio(BaseOptions(
-    baseUrl: "https://private-5907a-psmocktest.apiary-mock.com/",
+    baseUrl: "https://private-f3be7e-pagbankbootcamp.apiary-mock.com/",
   ));
   dio.interceptors.add(LogInterceptor(
     requestBody: true,

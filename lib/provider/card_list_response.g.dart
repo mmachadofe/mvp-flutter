@@ -8,7 +8,7 @@ part of 'card_list_response.dart';
 
 CardListResponseVO _$CardListResponseVOFromJson(Map<String, dynamic> json) {
   return CardListResponseVO(
-    (json['list'] as List)
+    (json['cards'] as List)
         ?.map((e) => e == null
             ? null
             : CardResponseVO.fromJson(e as Map<String, dynamic>))
@@ -18,5 +18,5 @@ CardListResponseVO _$CardListResponseVOFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CardListResponseVOToJson(CardListResponseVO instance) =>
     <String, dynamic>{
-      'list': instance.list,
+      'cards': instance.cards,
     };

@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_flutter/api_client.dart';
+import 'package:flutter/services.dart';
 import 'package:mvp_flutter/contract/card_list_contract.dart';
+import 'package:mvp_flutter/core/strings/strings_resource.dart';
+import 'package:mvp_flutter/core/utilities.dart';
 import 'package:mvp_flutter/presenter/card_list_presenter.dart';
 import 'package:mvp_flutter/provider/card_response_vo.dart';
-import 'package:mvp_flutter/provider/card_vo.dart';
 import 'package:mvp_flutter/repository/card_list_api.dart';
 
 class CardListPage extends StatefulWidget {
@@ -41,7 +43,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-              "Cartões"
+              ResourceStrings.title_main
           ),
         ),
         body: LayoutBuilder(
@@ -58,7 +60,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     borderRadius: BorderRadius.circular(16.0),
-                                    color: Color(int.parse(_cards[index].layoutAttrs.bgColor)),
+                                    color: HexColor.fromHex(_cards[index].layoutAttrs.bgColor),
                                   ),
                                   width: 100,
                                   height: 70,
@@ -67,7 +69,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                     children: [
                                       Text(
                                         _cards[index].lastDigits,
-                                        style: TextStyle(color: Color(int.parse(_cards[index].layoutAttrs.titleColor))),
+                                        style: TextStyle(color: HexColor.fromHex(_cards[index].layoutAttrs.titleColor)),
                                       ),
                                       Image.network(_cards[index].cardBrand,width: 30,
                                         height: 20)
