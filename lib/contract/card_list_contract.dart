@@ -1,8 +1,10 @@
-import 'package:mvp_flutter/provider/card_vo.dart';
+import 'package:mvp_flutter/provider/card_response_vo.dart';
 
 abstract class CardListView {
 
-  void loadListSuccess(List<CardVO> cards);
+  void loadListSuccess(List<CardResponseVO> cards);
+
+  void loadListError();
 
   void listLoading();
 }

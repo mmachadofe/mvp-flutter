@@ -1,13 +1,15 @@
 import 'package:mvp_flutter/contract/card_list_contract.dart';
 import 'package:mvp_flutter/page/cards_list_page.dart';
-import 'package:mvp_flutter/provider/card_layout.dart';
+import 'package:mvp_flutter/provider/card_layout_vo.dart';
 import 'package:mvp_flutter/provider/card_vo.dart';
+import 'package:mvp_flutter/repository/card_list_api.dart';
 
 class CardListPresenterImpl implements CardListPresenter {
 
   final CardListView _view;
+  final CardListApi _api;
 
-  CardListPresenterImpl(this._view);
+  CardListPresenterImpl(this._view, this._api);
 
   @override
   void getCardList() {
@@ -17,14 +19,9 @@ class CardListPresenterImpl implements CardListPresenter {
     final colorGray = "#626567";
     final colorWhite = "#FFFFFF";
 
-    final cards = [
-      CardVO("Cartão A", "5555", "Em análise", "https://s3.amazonaws.com/ps-mib-qa/cdn/android/xxxhdpi/mastercard.png", CardLayout(this.colorHelper(colorYellow), this.colorHelper(colorBlack))),
-      CardVO("Cartão B", "2222", "Em análise","https://s3.amazonaws.com/ps-mib-qa/cdn/android/xxxhdpi/mastercard.png", CardLayout(this.colorHelper(colorYellow), this.colorHelper(colorBlack))),
-      CardVO("Cartão C", "3333", "Cancelado","https://s3.amazonaws.com/ps-mib-qa/cdn/android/xxxhdpi/visa.png", CardLayout(this.colorHelper(colorGray), this.colorHelper(colorWhite))),
-      CardVO("Cartão D", "4444", "Em análise", "https://s3.amazonaws.com/ps-mib-qa/cdn/android/xxxhdpi/mastercard.png", CardLayout(this.colorHelper(colorYellow), this.colorHelper(colorBlack)))
-    ];
-
-    _view.loadListSuccess(cards);
+    _api.getCardsList().then((response) {
+      _view.loadListSuccess(response.list);
+    });
   }
 
   colorHelper(String color){

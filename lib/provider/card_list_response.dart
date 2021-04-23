@@ -1,17 +1,18 @@
-// import 'package:json_annotation/json_annotation.dart';
-//
-// part 'card_list_response.g.dart';
-//
-// @JsonSerializable()
-// class CardListVO {
-//
-//   final List<String> list;
-//
-//   CardListVO(this.list);
-//
-//   factory CardListVO.fromJson(Map<String, dynamic> json) =>
-//       _$CardListVOFromJson(json);
-//
-//   Map<String, dynamic> toJson() => _$CardListVOFromJson(this);
-//
-// }
+import 'package:json_annotation/json_annotation.dart';
+import 'package:mvp_flutter/provider/card_response_vo.dart';
+
+part 'card_list_response.g.dart';
+
+@JsonSerializable()
+class CardListResponseVO {
+
+  final List<CardResponseVO> list;
+
+  CardListResponseVO(this.list);
+
+  factory CardListResponseVO.fromJson(Map<String, dynamic> json) =>
+      _$CardListResponseVOFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CardListResponseVOToJson(this);
+
+}

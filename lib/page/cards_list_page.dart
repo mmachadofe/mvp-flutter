@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mvp_flutter/api_client.dart';
 import 'package:mvp_flutter/contract/card_list_contract.dart';
 import 'package:mvp_flutter/presenter/card_list_presenter.dart';
+import 'package:mvp_flutter/provider/card_response_vo.dart';
 import 'package:mvp_flutter/provider/card_vo.dart';
+import 'package:mvp_flutter/repository/card_list_api.dart';
 
 class CardListPage extends StatefulWidget {
 
@@ -18,7 +21,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var _loaded = false;
-  List<CardVO> _cards = [];
+  List<CardResponseVO> _cards = [];
 
   CardListPresenter _presenter;
 
@@ -26,7 +29,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
   void initState() {
     super.initState();
 
-    _presenter = CardListPresenterImpl(this);
+    _presenter = CardListPresenterImpl(this, CardListApi(ApiClient.getDio()));
 
     _presenter.getCardList();
   }
@@ -76,11 +79,11 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                   child: Column(
                                     children: [
                                       Text(
-                                          _cards[index].cardTitle,
-                                        style: TextStyle(fontWeight: FontWeight.bold)
+                                          _cards[index].title,
+                                          style: TextStyle(fontWeight: FontWeight.bold)
                                     ),
                                       Text(
-                                          _cards[index].statusMessage
+                                          _cards[index].description
                                       ),
                                     ],
                                   )
@@ -95,7 +98,7 @@ class _CardListPage extends State<CardListPage> implements CardListView {
   }
 
   @override
-  void loadListSuccess(List<CardVO> cards) {
+  void loadListSuccess(List<CardResponseVO> cards) {
     setState(() {
       this._cards = cards;
       _loaded = true;
@@ -107,5 +110,9 @@ class _CardListPage extends State<CardListPage> implements CardListView {
     setState(() {
       _loaded = false;
     });
+  }
+
+  @override
+  void loadListError() {
   }
 }
