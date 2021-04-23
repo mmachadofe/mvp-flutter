@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvp_flutter/page/cards_list_page.dart';
+import 'package:mvp_flutter/cards/page/cards_list_page.dart';
 
 void main() {
   runApp(MyApp());

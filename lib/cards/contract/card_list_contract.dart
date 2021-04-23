@@ -1,4 +1,4 @@
-import 'package:mvp_flutter/provider/card_response_vo.dart';
+import 'package:mvp_flutter/cards/provider/card_response_vo.dart';
 
 abstract class CardListView {
 

@@ -1,6 +1,6 @@
 
 import 'package:dio/dio.dart';
-import 'package:mvp_flutter/provider/card_list_response.dart';
+import 'package:mvp_flutter/cards/provider/card_list_response.dart';
 import 'package:retrofit/http.dart';
 
 part 'card_list_api.g.dart';

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mvp_flutter/api_client.dart';
 import 'package:flutter/services.dart';
-import 'package:mvp_flutter/contract/card_list_contract.dart';
+import 'package:mvp_flutter/core/api_client.dart';
 import 'package:mvp_flutter/core/strings/strings_resource.dart';
 import 'package:mvp_flutter/core/utilities.dart';
-import 'package:mvp_flutter/presenter/card_list_presenter.dart';
-import 'package:mvp_flutter/provider/card_response_vo.dart';
-import 'package:mvp_flutter/repository/card_list_api.dart';
+import 'package:mvp_flutter/cards/contract/card_list_contract.dart';
+import 'package:mvp_flutter/cards/presenter/card_list_presenter.dart';
+import 'package:mvp_flutter/cards/provider/card_response_vo.dart';
+import 'package:mvp_flutter/cards/repository/card_list_api.dart';
 
 class CardListPage extends StatefulWidget {
 
@@ -82,10 +82,11 @@ class _CardListPage extends State<CardListPage> implements CardListView {
                                     children: [
                                       Text(
                                           _cards[index].title,
-                                          style: TextStyle(fontWeight: FontWeight.bold)
+                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
                                     ),
                                       Text(
-                                          _cards[index].description
+                                          _cards[index].description,
+                                          style: TextStyle(fontSize: 16)
                                       ),
                                     ],
                                   )

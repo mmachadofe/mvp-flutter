@@ -1,8 +1,5 @@
-import 'package:mvp_flutter/contract/card_list_contract.dart';
-import 'package:mvp_flutter/page/cards_list_page.dart';
-import 'package:mvp_flutter/provider/card_layout_vo.dart';
-import 'package:mvp_flutter/provider/card_vo.dart';
-import 'package:mvp_flutter/repository/card_list_api.dart';
+import 'package:mvp_flutter/cards/contract/card_list_contract.dart';
+import 'package:mvp_flutter/cards/repository/card_list_api.dart';
 
 class CardListPresenterImpl implements CardListPresenter {
 

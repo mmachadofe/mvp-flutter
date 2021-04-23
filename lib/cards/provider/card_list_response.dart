@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mvp_flutter/provider/card_response_vo.dart';
+import 'package:mvp_flutter/cards/provider/card_response_vo.dart';
 
 part 'card_list_response.g.dart';
 
