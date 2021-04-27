@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter App',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.blueGrey[50],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: CardListPage(),
