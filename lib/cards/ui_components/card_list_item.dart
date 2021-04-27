@@ -10,6 +10,7 @@ class CardListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        margin: EdgeInsets.all(5),
         child: Container(
             height: 88,
             padding: const EdgeInsets.all(8.0),
@@ -23,8 +24,7 @@ class CardListItem extends StatelessWidget {
                 ),
                 width: 60,
                 height: 40,
-                padding: EdgeInsets.symmetric(
-                    horizontal: 2, vertical: 4),
+                padding: EdgeInsets.fromLTRB(3, 2, 0, 3),
                 child: Column(
                   mainAxisAlignment:
                   MainAxisAlignment.spaceBetween,
