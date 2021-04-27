@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mvp_flutter/cards/ui_components/card_list_item.dart';
 import 'package:mvp_flutter/core/api_client.dart';
 import 'package:mvp_flutter/core/strings/strings_resource.dart';
-import 'package:mvp_flutter/core/utilities.dart';
 import 'package:mvp_flutter/cards/contract/card_list_contract.dart';
 import 'package:mvp_flutter/cards/presenter/card_list_presenter.dart';
 import 'package:mvp_flutter/cards/provider/card_response_vo.dart';
 import 'package:mvp_flutter/cards/repository/card_list_api.dart';
 
 class CardListPage extends StatefulWidget {
-
   CardListPage({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -20,7 +19,6 @@ class CardListPage extends StatefulWidget {
 }
 
 class _CardListPage extends State<CardListPage> implements CardListView {
-
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var _loaded = false;
   List<CardResponseVO> _cards = [];
@@ -42,62 +40,42 @@ class _CardListPage extends State<CardListPage> implements CardListView {
         key: _scaffoldKey,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
-              ResourceStrings.title_main
-          ),
+          title: Text(ResourceStrings.title_main),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: ResourceStrings.bottom_navigation_item1,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: ResourceStrings.bottom_navigation_item2,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.storefront),
+              label: ResourceStrings.bottom_navigation_item3,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.credit_card),
+              label: ResourceStrings.bottom_navigation_item4,
+            ),
+          ],
+          iconSize: 28,
+          selectedItemColor: Colors.green,
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.grey.shade700,
+          showUnselectedLabels: true
         ),
         body: LayoutBuilder(
           builder: (context, constraints) {
             return ListView.builder(
                 itemCount: this._loaded ? _cards.length : 0,
                 itemBuilder: (context, index) {
-                  return Card(
-                      child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                    color: HexColor.fromHex(_cards[index].layoutAttrs.bgColor),
-                                  ),
-                                  width: 100,
-                                  height: 70,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        _cards[index].lastDigits,
-                                        style: TextStyle(color: HexColor.fromHex(_cards[index].layoutAttrs.titleColor)),
-                                      ),
-                                      Image.network(_cards[index].cardBrand,width: 30,
-                                        height: 20)
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                          _cards[index].title,
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
-                                    ),
-                                      Text(
-                                          _cards[index].description,
-                                          style: TextStyle(fontSize: 16)
-                                      ),
-                                    ],
-                                  )
-                                )
-                              ])
-                      )
-                  );
+                  return CardListItem(_cards[index]);
                 });
           },
-        )
-    );
+        ));
   }
 
   @override
@@ -116,6 +94,5 @@ class _CardListPage extends State<CardListPage> implements CardListView {
   }
 
   @override
-  void loadListError() {
-  }
+  void loadListError() {}
 }
