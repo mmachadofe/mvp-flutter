@@ -1,15 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_flutter/cards/provider/card_response_vo.dart';
+import 'package:mvp_flutter/core/strings/strings_resource.dart';
 import 'package:mvp_flutter/core/utilities.dart';
 
-class CardDetailsItem extends StatelessWidget {
+class CardDetailsItem extends StatefulWidget {
   final CardResponseVO card;
 
   CardDetailsItem(this.card);
 
   @override
+  _CardDetailsItem createState() => _CardDetailsItem();
+}
+
+class _CardDetailsItem extends State<CardDetailsItem> {
+  bool isSwitched = false;
+
+  @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
       child: Column(
@@ -20,7 +29,7 @@ class CardDetailsItem extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.fromLTRB(14, 70, 14, 11),
             decoration: BoxDecoration(
-              color: HexColor.fromHex(card.layoutAttrs.bgColor),
+              color: HexColor.fromHex(widget.card.layoutAttrs.bgColor),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12),
             ),
@@ -28,15 +37,15 @@ class CardDetailsItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "**** **** **** ${card.lastDigits}",
+                  "${ResourceStrings.CARD_NUMBER} ${widget.card.lastDigits}",
                   style: TextStyle(
                     fontSize: 24,
-                    color: HexColor.fromHex(card.layoutAttrs.titleColor),
+                    color: HexColor.fromHex(widget.card.layoutAttrs.titleColor),
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Image.network(card.cardBrand, width: 90, height: 65),
+                  child: Image.network(widget.card.cardBrand, width: 90, height: 65),
                 )
               ],
             ),
@@ -47,11 +56,11 @@ class CardDetailsItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Situação: ",
+                ResourceStrings.label_situation,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Text(
-                card.description,
+                widget.card.description,
                 style: TextStyle(fontSize: 24),
               ),
             ],
@@ -62,7 +71,7 @@ class CardDetailsItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Saldo/Limite: ",
+                ResourceStrings.label_limit,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Text(
@@ -77,8 +86,17 @@ class CardDetailsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("Bloquear cartão"),
-              Switch(value: true, onChanged: null)
+              Text(ResourceStrings.title_switch_block),
+              Switch(
+                value: isSwitched,
+                onChanged: (value) {
+                  setState(() {
+                    isSwitched = value;
+                  });
+                },
+                activeTrackColor: Colors.lightGreen[200],
+                activeColor: Colors.green,
+              )
             ],
           )
         ],
