@@ -12,6 +12,4 @@ abstract class CardListView {
 abstract class CardListPresenter {
 
   void getCardList();
-
-  void selectCard(String number);
 }

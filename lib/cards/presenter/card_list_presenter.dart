@@ -14,9 +14,4 @@ class CardListPresenterImpl implements CardListPresenter {
       _view.loadListSuccess(response.cards);
     });
   }
-
-  @override
-  void selectCard(String number) {
-
-  }
 }
