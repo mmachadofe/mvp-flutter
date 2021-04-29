@@ -96,11 +96,17 @@ class _CardListPage extends State<CardListPage> implements CardListView {
             case 2:
               return _widgetOptions(ResourceStrings.bottom_navigation_item3);
             default:
-              return ListView.builder(
-                  itemCount: this._loaded ? _cards.length : 0,
-                  itemBuilder: (context, index) {
-                    return CardListItem(_cards[index]);
-                  });
+              return Visibility(
+                visible: _loaded,
+                child: _cards.length > 0
+                    ? ListView.builder(
+                        padding: EdgeInsets.all(8),
+                        itemCount: _cards.length,
+                        itemBuilder: (context, index) {
+                          return CardListItem(_cards[index]);
+                        })
+                    : Center(child: const Text('No items')),
+              );
           }
         },
       ),

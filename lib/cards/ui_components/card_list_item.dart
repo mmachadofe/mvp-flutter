@@ -15,7 +15,6 @@ class CardListItem extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context) => CardsDetailsPage(card: card,)));
       },
       child: Card(
-          margin: EdgeInsets.all(4),
           child: Container(
               height: 88,
               padding: const EdgeInsets.all(8.0),
