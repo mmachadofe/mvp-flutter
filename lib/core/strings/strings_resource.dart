@@ -1,5 +1,7 @@
 class ResourceStrings {
-  static const String title_main = "Cartões";
+  static const String title_main ="Home";
+  static const String title_extract ="Extrato da conta";
+  static const String title_cards = "Cartões";
   static const String title_switch_block = "Bloquear Cartão";
   static const String label_situation = "Situação: ";
   static const String label_limit = "Saldo/Limite: ";
