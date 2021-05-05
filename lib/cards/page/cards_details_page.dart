@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_flutter/cards/contract/card_details_contract.dart';
@@ -10,8 +11,9 @@ import 'package:mvp_flutter/core/utilities.dart';
 
 class CardsDetailsPage extends StatefulWidget {
   final CardResponseVO card;
+  final Dio client;
 
-  CardsDetailsPage({this.card});
+  CardsDetailsPage({this.card, this.client});
 
   @override
   _CardsDetailsPageState createState() => _CardsDetailsPageState();
@@ -29,8 +31,13 @@ class _CardsDetailsPageState extends State<CardsDetailsPage>
   void initState() {
     super.initState();
 
-    _presenter =
-        CardDetailsPresenterImpl(this, CardDetailsApi(ApiClient.getDio()));
+    if(widget.client==null){
+      _presenter =
+          CardDetailsPresenterImpl(this, CardDetailsApi(ApiClient.getDio()));
+    }else{
+      _presenter =
+          CardDetailsPresenterImpl(this, CardDetailsApi(widget.client));
+    }
 
     _presenter.getDetailCard(widget.card.id);
   }
