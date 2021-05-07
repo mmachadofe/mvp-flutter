@@ -9,7 +9,7 @@ abstract class CardDetailsApi {
 
   factory CardDetailsApi(Dio dio) = _CardDetailsApi;
 
-  static CardDetailsApi _instance;
+  //static CardDetailsApi _instance;
 
   @GET("/cards/{walletId}")
   Future<CardDetailVO> getDetailCard(@Path("walletId") walletId);

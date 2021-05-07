@@ -9,7 +9,7 @@ abstract class CardListApi {
 
   factory CardListApi(Dio dio) = _CardListApi;
 
-  static CardListApi _instance;
+  //static CardListApi _instance;
 
   @GET("/cards")
   Future<CardListResponseVO> getCardsList();

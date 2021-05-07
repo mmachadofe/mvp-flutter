@@ -12,6 +12,8 @@ class CardDetailsPresenterImpl implements CardDetailsPresenter {
   void getDetailCard(String walletId) {
     _api.getDetailCard(walletId).then((response) {
       _view.showDetailsSuccess(response.limit, response.blockStatus);
+    }).catchError((onError) {
+      _view.showDetailsError();
     });
   }
 

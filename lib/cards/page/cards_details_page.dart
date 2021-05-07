@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -156,6 +158,6 @@ class _CardsDetailsPageState extends State<CardsDetailsPage>
 
   @override
   void showDetailsError() {
-    // implement showDetailsError
+    log('Error!');
   }
 }

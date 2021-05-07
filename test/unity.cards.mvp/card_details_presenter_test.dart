@@ -43,7 +43,7 @@ main() {
       presenter.getDetailCard("any");
 
       await untilCalled(
-        view.showDetailsSuccess("limit", false),
+        view.showDetailsError(),
       );
 
       verifyInOrder([

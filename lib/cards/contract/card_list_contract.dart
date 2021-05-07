@@ -6,7 +6,7 @@ abstract class CardListView {
 
   void loadListError();
 
-  void listLoading();
+  void listLoading(bool status);
 }
 
 abstract class CardListPresenter {

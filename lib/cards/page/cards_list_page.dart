@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mvp_flutter/cards/ui_components/card_list_item.dart';
 import 'package:mvp_flutter/core/api_client.dart';
 import 'package:mvp_flutter/core/strings/strings_resource.dart';
@@ -117,19 +118,20 @@ class _CardListPage extends State<CardListPage> implements CardListView {
   void loadListSuccess(List<CardResponseVO> cards) {
     setState(() {
       this._cards = cards;
-      _loaded = true;
     });
   }
 
   @override
-  void listLoading() {
+  void listLoading(bool status) {
     setState(() {
-      _loaded = false;
+      _loaded = status;
     });
   }
 
   @override
-  void loadListError() {}
+  void loadListError() {
+    log('Error!');
+  }
 
   void _onItemTapped(int index) {
     setState(() {

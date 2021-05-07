@@ -10,8 +10,13 @@ class CardListPresenterImpl implements CardListPresenter {
 
   @override
   void getCardList() {
+    _view.listLoading(false);
     _api.getCardsList().then((response) {
       _view.loadListSuccess(response.cards);
+      _view.listLoading(true);
+    }).catchError((onError) {
+      _view.loadListError();
+      _view.listLoading(true);
     });
   }
 }
