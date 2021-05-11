@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_flutter/cards/ui_components/card_list_item.dart';
@@ -11,7 +12,9 @@ import 'package:mvp_flutter/cards/provider/card_response_vo.dart';
 import 'package:mvp_flutter/cards/repository/card_list_api.dart';
 
 class CardListPage extends StatefulWidget {
-  CardListPage({Key key, this.title}) : super(key: key);
+  final Dio client;
+
+  CardListPage({Key key, this.title, this.client}) : super(key: key);
 
   final String title;
 
@@ -47,7 +50,11 @@ class _CardListPage extends State<CardListPage> implements CardListView {
   void initState() {
     super.initState();
 
-    _presenter = CardListPresenterImpl(this, CardListApi(ApiClient.getDio()));
+    if(widget.client==null){
+      _presenter = CardListPresenterImpl(this, CardListApi(ApiClient.getDio()));
+    }else{
+      _presenter = CardListPresenterImpl(this, CardListApi(widget.client));
+    }
 
     _presenter.getCardList();
   }

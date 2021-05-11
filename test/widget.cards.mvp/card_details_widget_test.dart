@@ -51,10 +51,11 @@ main() {
           ),
         ));
 
-        // expect(find.text("**** **** **** 9371"), findsOneWidget);
         expect(find.text("Detalhes"), findsOneWidget);
 
         await tester.pumpAndSettle();
+        expect(find.text("**** **** **** 9371"), findsOneWidget);
+        expect(find.text("1.000,00"), findsOneWidget);
       });
     });
   });
