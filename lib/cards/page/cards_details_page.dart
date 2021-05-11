@@ -124,6 +124,7 @@ class _CardsDetailsPageState extends State<CardsDetailsPage>
                 children: [
                   Text(ResourceStrings.title_switch_block),
                   Switch(
+                    key: Key('switch_block'),
                     value: _blockStatus,
                     onChanged: (value) {
                       setState(() {

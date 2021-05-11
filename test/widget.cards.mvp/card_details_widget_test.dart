@@ -9,20 +9,7 @@ import 'package:network_image_mock/network_image_mock.dart';
 main() {
   group("Card Details Widget Test", () {
     final mock = MockClientAdapter();
-    // setUp(() {
-    //   mock
-    //     ..addResponse(MockResponse(
-    //       "/cards/1029384756id",
-    //       body: '''
-    //       {
-    //         "limit": "1.000,00",
-    //         "blockStatus": true
-    //       }
-    //   ''',
-    //     ));
-    // });
-
-    testWidgets('check success', (WidgetTester tester) async {
+    setUp(() {
       mock
         ..addResponse(MockResponse(
           "/cards/1029384756id",
@@ -33,16 +20,18 @@ main() {
           }
       ''',
         ));
+    });
 
-      CardResponseVO responseCard = CardResponseVO(
-        "1029384756id",
-        "Detalhes",
-        "9371",
-        "Descrição",
-        "",
-        CardLayoutVO("#ff000000", "#ff000000"),
-      );
+    CardResponseVO responseCard = CardResponseVO(
+      "1029384756id",
+      "Detalhes",
+      "9371",
+      "Descrição",
+      "",
+      CardLayoutVO("#ff000000", "#ff000000"),
+    );
 
+    testWidgets('check success', (WidgetTester tester) async {
       mockNetworkImagesFor(() async {
         await tester.pumpWidget(MaterialApp(
           home: CardsDetailsPage(
@@ -56,6 +45,22 @@ main() {
         await tester.pumpAndSettle();
         expect(find.text("**** **** **** 9371"), findsOneWidget);
         expect(find.text("1.000,00"), findsOneWidget);
+      });
+    });
+
+    testWidgets('Check if a switch is enabled', (WidgetTester tester) async {
+      mockNetworkImagesFor(() async {
+        await tester.pumpWidget(MaterialApp(
+          home: CardsDetailsPage(
+            card: responseCard,
+            client: mock.dio,
+          ),
+        ));
+
+        await tester.pumpAndSettle();
+        final Finder switchFinder = find.byKey(Key('switch_block'));
+        final switchWdt = tester.widget<Switch>(switchFinder);
+        expect(switchWdt.value, true);
       });
     });
   });
